@@ -37,6 +37,11 @@ class Main(View):
         return render(request, self.template_name, context)
 
 class Song(View):
+    def slice(self, string):
+        if len(string) > 20:
+            string = string[:20]+"......"
+        return string
+
     def post(self, request, *args, **kwargs):
         lyrics_id = request.POST['data[lyrics_id]']
         subtitle = request.POST['data[subtitle]']
@@ -48,7 +53,7 @@ class Song(View):
         database = {
             "image": image,
             "title": title,
-            "subtitle": subtitle,
+            "subtitle": self.slice(subtitle),
             "songurl": songUrl
         }
         return JsonResponse(database)
