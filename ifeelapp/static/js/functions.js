@@ -10,6 +10,23 @@ searchBtn.addEventListener('click', () => {
 });
 
 // Load Songs
-function loadSong(lyrics_id, subtitle, id, enc_url, title, image){
-    window.location.href = "/main/"+id+"/"+lyrics_id+"/?url="+enc_url+"&title="+title+"&subtitle="+subtitle+"&image="+image
+function loadSong(lyrics_id, subtitle, id, enc_url, title, image, csrf_token){
+    var data = {
+        "lyrics_id": lyrics_id,
+        "subtitle": subtitle,
+        "id": id,
+        "enc_url": enc_url,
+        "title": title,
+        "image": image
+    };
+
+        $.ajax({
+        type: "POST",
+        url: '/main/song/',
+        data: { csrfmiddlewaretoken: csrf_token, data: data },
+        success: function callback(response){
+                    console.log(response);
+        }
+    });
+    // window.location.href = "/main/"+id+"/"+lyrics_id+"/?url="+enc_url+"&title="+title+"&subtitle="+subtitle+"&image="+image
 }

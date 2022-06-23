@@ -69,7 +69,7 @@
             <div class="music-gallery">
                 {% if database %}
                 {% for song in database %}
-                <div class="card" onclick="loadSong('{{song.lyrics_id}}', '{{song.subtitle}}', '{{ song.id }}', '{{ song.encrypted_media_url }}', '{{song.title}}', '{{song.image}}')">
+                <div class="card" onclick="loadSong('{{song.lyrics_id}}', '{{song.subtitle}}', '{{ song.id }}', '{{ song.encrypted_media_url }}', '{{song.title}}', '{{song.image}}', '{{ csrf_token }}')">
                     <img src="{{ song.image }}" />
                     <div class="meta">
                         <p>{{ song.title }}</p>
@@ -106,6 +106,8 @@
                     <div class="image">
                         {% if songMeta %}
                         <img src="{{ songMeta.image }}" />
+                        {% else %}
+                        <img src="https://media.istockphoto.com/vectors/image-preview-icon-picture-placeholder-for-website-or-uiux-design-vector-id1222357475?k=20&m=1222357475&s=612x612&w=0&h=jPhUdbj_7nWHUp0dsKRf4DMGaHiC16kg_FSjRRGoZEI=" />
                         {% endif %}
                     </div>
                     <div class="data">
@@ -128,9 +130,9 @@
             <input type="range" min="1" max="100" value="50" class="slider" id="volumeSlider">
         </div>
     </main>
+    <script src={% static 'js/jquery.min.js' %} ></script>
     <script src={% static 'js/script.js' %} ></script>
     <script src={% static 'js/player.js' %} ></script>
     <script src={% static 'js/functions.js' %} ></script>
-
 </body>
 </html>

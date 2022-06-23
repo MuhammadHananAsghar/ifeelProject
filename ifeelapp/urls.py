@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import Home, Main
+from .views import Home, Main, Song
 
 urlpatterns = [
     path('', Home.as_view(), name="Home"),
     path('main', Main.as_view(), name="Main"),
-    path('main/<str:query>', Main.as_view(), name="Main wirh Query"),
-    path('main/<str:id>/<str:lyrics>', Main.as_view(), name="Main with song loaded")
+    path('main/song/', Song.as_view(), name="Song"),
+    path('main/<str:query>', Main.as_view(), name="Main wirh Query")
 ]

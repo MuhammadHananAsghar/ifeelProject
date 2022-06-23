@@ -19,31 +19,12 @@ class Main(View):
         self.template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
-        global context
         query = kwargs.get("query")
         if query:
             response = [saavan.details(song) for song in saavan.search(query)]
             context = {
                 "query": query,
                 "database": response
-            }
-            return render(request, self.template_name, context)
-
-        id = kwargs.get("id")
-        lyrics = kwargs.get("lyrics")
-        url = self.request.GET.get('url')
-        title = self.request.GET.get('title')
-        subtitle = self.request.GET.get('subtitle')
-        image = self.request.GET.get('image')
-        
-        if id and lyrics and url:
-            url = url.replace(" ","+")
-            songUrl = saavan.song(id, url)
-            context["songMeta"] = {
-                "title": title,
-                "subtitle": subtitle,
-                "image": image,
-                "songUrl": songUrl
             }
             return render(request, self.template_name, context)
         
@@ -54,3 +35,20 @@ class Main(View):
                 "database": response
             }
         return render(request, self.template_name, context)
+
+class Song(View):
+    def post(self, request, *args, **kwargs):
+        lyrics_id = request.POST['data[lyrics_id]']
+        subtitle = request.POST['data[subtitle]']
+        id = request.POST['data[id]']
+        enc_url = request.POST['data[enc_url]']
+        title = request.POST['data[title]']
+        image = request.POST['data[image]']
+        songUrl = saavan.song(id, enc_url)
+        database = {
+            "image": image,
+            "title": title,
+            "subtitle": subtitle,
+            "songurl": songUrl
+        }
+        return HttpResponse(database)
