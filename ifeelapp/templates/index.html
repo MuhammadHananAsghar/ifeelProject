@@ -60,7 +60,7 @@
                 <h1 class="heading">Search</h1>
                 <div class="search">
                     <input type="text" name="search" placeholder="Search songs.." id="search">
-                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-search' id="searchButton" ></i>
                 </div>
             </div>
             <div class="head-songs">
@@ -69,7 +69,7 @@
             <div class="music-gallery">
                 {% if database %}
                 {% for song in database %}
-                <div class="card">
+                <div class="card" onclick="loadSong('{{song.lyrics_id}}', '{{song.subtitle}}', '{{ song.id }}', '{{ song.encrypted_media_url }}', '{{song.title}}', '{{song.image}}')">
                     <img src="{{ song.image }}" />
                     <div class="meta">
                         <p>{{ song.title }}</p>
@@ -87,7 +87,9 @@
             @Copyright. Muhammad Hanan Asghar
         </div>
         <div class="player">
-            <audio src="https://sdlhivkcdnems04.cdnsrv.jio.com/jiosaavn.cdn.jio.com/763/a00aa4473ffdc8cac123bbebfd98192c_160.mp4" preload="metadata" type="audio/mp3" loop></audio>
+            {% if songMeta %}
+            <audio src="{{ songMeta.songUrl }}" preload="metadata" type="audio/mp3" loop></audio>
+            {% endif %}
             <div class="seek">
                 <input type="range" id="seek-slider" max="100" value="0">
             </div>
@@ -102,11 +104,18 @@
             <div class="controls">
                 <div class="meta-data">
                     <div class="image">
-                        <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
+                        {% if songMeta %}
+                        <img src="{{ songMeta.image }}" />
+                        {% endif %}
                     </div>
                     <div class="data">
-                        <p>Dilbar</p>
-                        <span>Satyameva Jayate</span>
+                        {% if songMeta %}
+                        <p>{{ songMeta.title }}</p>
+                        <span>{{ songMeta.subtitle}}</span>
+                        {% else %}
+                        <p>Song name....</p>
+                        <span>Song description....</span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="buttons">
@@ -121,6 +130,7 @@
     </main>
     <script src={% static 'js/script.js' %} ></script>
     <script src={% static 'js/player.js' %} ></script>
+    <script src={% static 'js/functions.js' %} ></script>
 
 </body>
 </html>

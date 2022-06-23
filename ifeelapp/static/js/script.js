@@ -1,6 +1,5 @@
-let menu = document.getElementById("menu");
-let cancel = document.getElementById("cancel");
-
+const menu = document.getElementById("menu");
+const cancel = document.getElementById("cancel");
 
 menu.onclick = () => {
     let sidebar = document.querySelector(".sidebar");
@@ -19,6 +18,7 @@ menu.onclick = () => {
         return
     }
 }
+
 cancel.onclick = () => {
     let sidebar = document.querySelector(".sidebar");
     sidebar.style.width = "0px";

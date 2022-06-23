@@ -66,7 +66,6 @@ class JioSaavn:
       'ctx': f'{ID}',
       '_marker': '0',
     }
-
     response = requests.get('https://www.jiosaavn.com/api.php', params=params, headers=self.header)
     return response.json()['auth_url']
   
