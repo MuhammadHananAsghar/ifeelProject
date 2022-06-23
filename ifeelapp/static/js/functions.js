@@ -43,6 +43,7 @@ function loadSong(lyrics_id, subtitle, id, enc_url, title, image, csrf_token) {
       image.src = response["image"];
       title.textContent = response["title"];
       subtitle.textContent = response["subtitle"];
+      document.title = "Now Playing - "+response["title"];
     },
   });
 }
@@ -57,6 +58,7 @@ if (localStorage.getItem("songurl")) {
   image.src = localStorage.getItem("image");
   title.textContent = localStorage.getItem("title");
   subtitle.textContent = localStorage.getItem("subtitle");
+  document.title = "Now Playing - "+localStorage.getItem("title");
 }
 // Downloader Function
 function downloadFileWithLink(href) {
