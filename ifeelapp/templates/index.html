@@ -64,122 +64,26 @@
                 </div>
             </div>
             <div class="head-songs">
-                <span>New Songs</span>
+                <span>Search results for '{{ query }}'</span>
             </div>
             <div class="music-gallery">
+                {% if database %}
+                {% for song in database %}
                 <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
+                    <img src="{{ song.image }}" />
                     <div class="meta">
-                        <p>Tipsy Hogai</p>
+                        <p>{{ song.title }}</p>
                         <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
+                            <span>{{ song.year }}</span>&nbsp;&nbsp;&nbsp;
+                            <span>-&nbsp;&nbsp;&nbsp;{{ song.duration }}min</span>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="http://c.saavncdn.com/763/Dilliwaali-Zaalim-Girlfriend-Hindi-2015-150x150.jpg" />
-                    <div class="meta">
-                        <p>Tipsy Hogai</p>
-                        <div class="details">
-                            <span>2015</span>&nbsp;&nbsp;&nbsp;
-                            <span>-&nbsp;&nbsp;&nbsp;3.5min</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
         </div>
-        <div class="footer">
+        <div class="footer" style="margin: 1.5rem 0rem 1rem 0rem;">
             @Copyright. Muhammad Hanan Asghar
         </div>
         <div class="player">

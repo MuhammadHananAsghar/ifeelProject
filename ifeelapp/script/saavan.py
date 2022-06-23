@@ -34,11 +34,15 @@ class JioSaavn:
     response = requests.get('https://www.jiosaavn.com/api.php', params=params, headers=self.header).json()
     return response['results']
 
+  def slice(self, string):
+    if len(string) > 20:
+      string = string[:20]+"...."
+    return string
 
   def details(self, json):
     return {
         "lyrics_id": json["id"],
-        "title": json['title'],
+        "title": self.slice(json['title']),
         "subtitle": json['subtitle'],
         "type": json['type'],
         "image": json['image'],
@@ -47,7 +51,7 @@ class JioSaavn:
         "year": json['year'],
         "id": json['perma_url'].split("/")[-1],
         "encrypted_media_url": json['more_info']["encrypted_media_url"],
-        "duration": int(json['more_info']['duration'])/60,
+        "duration": round(int(json['more_info']['duration'])/60, 2),
         'album': json['more_info']['album'],
         'has_lyrics': json['more_info']['has_lyrics']
     }
