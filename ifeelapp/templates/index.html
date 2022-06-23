@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="logo">
+        <div class="logo" onclick="window.location.href = '/main'" style="cursor: pointer;">
             <span id="cancel">&#215</span>
             <div class="image">
                 <img src={% static 'images/logo2.png' %} />
@@ -25,10 +25,10 @@
                     Languages
                 </span>
                 <ul>
-                    <li>Urdu</li>
-                    <li>Hindi</li>
-                    <li>Punjabi</li>
-                    <li>English</li>
+                    <li onclick="migrate('urdu songs')">Urdu</li>
+                    <li onclick="migrate('hindi songs')">Hindi</li>
+                    <li onclick="migrate('punjabi songs')">Punjabi</li>
+                    <li onclick="migrate('english songs')">English</li>
                 </ul>
             </div>
             <div class="artists">
@@ -36,17 +36,17 @@
                     Artists
                 </span>
                 <ul>
-                    <li><img src={% static 'images/nusrat.jpg' %} />Nusrat Fateh Ali Khan</li>
-                    <li><img src={% static 'images/rahat.jpg' %} />Rahat Fateh Ali Khan</li>
-                    <li><img src={% static 'images/himmesh.jpg' %} />Hamesh Reshammiya</li>
-                    <li><img src={% static 'images/diljit.webp' %} />Diljit Dosanjh</li>
-                    <li><img src={% static 'images/arjit.jpg' %} />Arjit Singh</li>
-                    <li><img src={% static 'images/sonu.cms' %} />Sonu Nigam</li>
-                    <li><img src={% static 'images/atif.jpg' %} />Atif Aslam</li>
-                    <li><img src={% static 'images/neha.jpeg' %} />Neha Kakar</li>
-                    <li><img src={% static 'images/badshah.jpeg' %} />Badshah</li>
-                    <li><img src={% static 'images/arman.jpg' %} />Arman Mailk</li>
-                    <li><img src={% static 'images/raftar.png' %} />Raftar</li>
+                    <li onclick="migrate('nusrat fateh ali khan songs')"><img src={% static 'images/nusrat.jpg' %} />Nusrat Fateh Ali Khan</li>
+                    <li onclick="migrate('rahat fateh ali khan songs')"><img src={% static 'images/rahat.jpg' %} />Rahat Fateh Ali Khan</li>
+                    <li onclick="migrate('hamesh reshammiya songs')"><img src={% static 'images/himmesh.jpg' %} />Hamesh Reshammiya</li>
+                    <li onclick="migrate('diljit dosanjh songs')"><img src={% static 'images/diljit.webp' %} />Diljit Dosanjh</li>
+                    <li onclick="migrate('arjit singh songs')"><img src={% static 'images/arjit.jpg' %} />Arjit Singh</li>
+                    <li onclick="migrate('sonu nigam songs')"><img src={% static 'images/sonu.cms' %} />Sonu Nigam</li>
+                    <li onclick="migrate('atif aslam songs')"><img src={% static 'images/atif.jpg' %} />Atif Aslam</li>
+                    <li onclick="migrate('neha kakar songs')"><img src={% static 'images/neha.jpeg' %} />Neha Kakar</li>
+                    <li onclick="migrate('badshah songs')"><img src={% static 'images/badshah.jpeg' %} />Badshah</li>
+                    <li onclick="migrate('arman malik songs')"><img src={% static 'images/arman.jpg' %} />Arman Mailk</li>
+                    <li onclick="migrate('raftar songs')"><img src={% static 'images/raftar.png' %} />Raftar</li>
                 </ul>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="music-gallery">
                 {% if database %}
                 {% for song in database %}
-                <div class="card" onclick="loadSong('{{song.lyrics_id}}', '{{song.subtitle}}', '{{ song.id }}', '{{ song.encrypted_media_url }}', '{{song.title}}', '{{song.image}}', '{{ csrf_token }}')">
+                <div class="card" onclick="loadSong('{{song.lyrics_id}}', '{{song.album}}', '{{ song.id }}', '{{ song.encrypted_media_url }}', '{{song.title}}', '{{song.image}}', '{{ csrf_token }}')">
                     <img src="{{ song.image }}" />
                     <div class="meta">
                         <p>{{ song.title }}</p>
@@ -87,9 +87,7 @@
             @Copyright. Muhammad Hanan Asghar
         </div>
         <div class="player">
-            {% if songMeta %}
-            <audio src="{{ songMeta.songUrl }}" preload="metadata" type="audio/mp3" loop></audio>
-            {% endif %}
+            <audio src="" preload="metadata" type="audio/mp3" loop></audio>
             <div class="seek">
                 <input type="range" id="seek-slider" max="100" value="0">
             </div>
@@ -104,20 +102,11 @@
             <div class="controls">
                 <div class="meta-data">
                     <div class="image">
-                        {% if songMeta %}
-                        <img src="{{ songMeta.image }}" />
-                        {% else %}
-                        <img src="https://media.istockphoto.com/vectors/image-preview-icon-picture-placeholder-for-website-or-uiux-design-vector-id1222357475?k=20&m=1222357475&s=612x612&w=0&h=jPhUdbj_7nWHUp0dsKRf4DMGaHiC16kg_FSjRRGoZEI=" />
-                        {% endif %}
+                        <img src="" id="songImage" />
                     </div>
                     <div class="data">
-                        {% if songMeta %}
-                        <p>{{ songMeta.title }}</p>
-                        <span>{{ songMeta.subtitle}}</span>
-                        {% else %}
-                        <p>Song name....</p>
-                        <span>Song description....</span>
-                        {% endif %}
+                        <p id="songTitle">Song title.....</p>
+                        <span id="songDesc">Song description.....</span>
                     </div>
                 </div>
                 <div class="buttons">

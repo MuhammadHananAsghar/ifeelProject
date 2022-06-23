@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from ifeelapp.script.saavan import JioSaavn
@@ -51,4 +51,7 @@ class Song(View):
             "subtitle": subtitle,
             "songurl": songUrl
         }
-        return HttpResponse(database)
+        return JsonResponse(database)
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("This is not GET request route.")
