@@ -78,9 +78,6 @@ seekSlider.addEventListener("change", () => {
   audio.currentTime = seekSlider.value;
 });
 
-seekSlider.oninput = () => {
-  console.log(seekSlider.value);
-};
 
 // Volume Functionality implmenetation
 volumeSlider.addEventListener("input", (e) => {
