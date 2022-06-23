@@ -77,6 +77,7 @@
                             <span>{{ song.year }}</span>&nbsp;&nbsp;&nbsp;
                             <span>-&nbsp;&nbsp;&nbsp;{{ song.duration }}min</span>
                         </div>
+                        <i class="uil uil-cloud-download" onclick="download('{{ song.id }}', '{{ song.encrypted_media_url }}', '{{csrf_token}}')"></i>
                     </div>
                 </div>
                 {% endfor %}

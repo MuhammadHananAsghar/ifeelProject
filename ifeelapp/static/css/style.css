@@ -232,6 +232,13 @@ body {
 .main .container .card img:hover {
   transform: scale(1.05, 1.05);
 }
+.main .container .card{
+  position: relative;
+}
+.main .container .card .uil-cloud-download{
+  position: absolute;
+  right: 10px;
+}
 .main .container .card .details {
   font-size: 9px;
   color: rgba(255, 255, 255, 0.5);

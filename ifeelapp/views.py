@@ -55,3 +55,16 @@ class Song(View):
 
     def get(self, request, *args, **kwargs):
         return HttpResponse("This is not GET request route.")
+
+class Download(View):
+    def post(self, request, *args, **kwargs):
+        id = request.POST['data[id]']
+        enc_url = request.POST['data[enc_url]']
+        songUrl = saavan.song(id, enc_url)
+        database = {
+            "songurl": songUrl
+        }
+        return JsonResponse(database)
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("This is not GET request route.")

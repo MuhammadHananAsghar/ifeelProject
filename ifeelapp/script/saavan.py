@@ -35,8 +35,8 @@ class JioSaavn:
     return response['results']
 
   def slice(self, string):
-    if len(string) > 20:
-      string = string[:20]+"...."
+    if len(string) > 10:
+      string = string[:10]+"...."
     return string
 
   def details(self, json):
